@@ -55,6 +55,7 @@ data:
   DB_DATABASE: crud_cliente
 
 ---
+{{- if (.Values.deployment).enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -79,7 +80,7 @@ spec:
   selector:
     matchLabels:
       app: {{ (.Values.deployment).appName }}
-
+{{- end }}
 #---
 # Pod
 #apiVersion: v1
