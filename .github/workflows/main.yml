@@ -15,7 +15,7 @@ on:
 name: Create Image arm64
 jobs:
   web-deploy:
-    name: Deploy to production
+    name: Build and push image to docker hub
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
