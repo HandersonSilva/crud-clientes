@@ -1,15 +1,16 @@
 # Deployment object
 deployment:
   enabled: true
-  name: crud-clientes
+  name: crud-clientes-deployment
   namespace: apps
   replicas: 3
   appName: crud-clientes
 #  role: api
   containerName: crud-clientes-container
   imageRepository: handersonsilva/crud-clientes
-  imageTag: 1.0.8
+  imageTag: 1.0.10
   port: 9000
+  configMapName: crud-clientes-configmap
 ## Horizontal Pod Autoscaler
 hpa:
   enabled: true

@@ -73,30 +73,32 @@ data:
 #        - configMapRef:
 #            name: crud-clientes-configmap
 
+{{- if ((.Values.deployment).enabled) }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crud-clientes-deployment
-  namespace: apps
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.deployment.namespace }}
 spec:
   replicas: 3
   template:
     metadata:
-      name: crud-clientes
+      name: {{ .Values.deployment.appName }}
       labels:
-        app: crud-clientes
+        app: {{ .Values.deployment.appName }}
     spec:
       containers:
-        - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.9
+        - name: {{ .Values.deployment.containerName }}
+          image: "{{ .Values.deployment.imageRepository }}:{{ .Values.deployment.imageTag }}"
           ports:
-            - containerPort: 9000
+            - containerPort: {{ .Values.deployment.port }}
           envFrom:
             - configMapRef:
-                name: crud-clientes-configmap
+                name: {{ .Values.deployment.configMapName }}
   selector:
     matchLabels:
-      app: crud-clientes
+      app: {{ .Values.deployment.appName }}
+{{- end }}
 
 #{{- if ((.Values.deployment).enabled) }}
 #apiVersion: apps/v1
