@@ -55,32 +55,31 @@ data:
   DB_DATABASE: crud_cliente
 
 ---
-{{- if (.Values.deployment).enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ (.Values.deployment).name }}
-  namespace: {{ (.Values.deployment).namespace }}
+  name: crud-clientes-deployment
+  namespace: apps
 spec:
   replicas: 3
   template:
     metadata:
-      name: {{ (.Values.deployment).appName }}
+      name: crud-clientes
       labels:
-        app: {{ (.Values.deployment).appName }}
+        app: crud-clientes
     spec:
       containers:
-        - name: {{ (.Values.deployment).containerName }}
-          image: "{{ (.Values.deployment).imageRepository }}:{{ (.Values.deployment).imageTag }}"
+        - name: crud-clientes-container
+          image: handersonsilva/crud-clientes:1.0.10
           ports:
-            - containerPort: {{ (.Values.deployment).port }}
+            - containerPort: 9000
           envFrom:
             - configMapRef:
-                name: {{ (.Values.deployment).configMapName }}
+                name: crud-clientes-configmap
   selector:
     matchLabels:
-      app: {{ (.Values.deployment).appName }}
-{{- end }}
+      app: crud-clientes
+
 #---
 # Pod
 #apiVersion: v1
