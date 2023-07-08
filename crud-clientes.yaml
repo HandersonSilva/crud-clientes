@@ -55,32 +55,30 @@ data:
   DB_DATABASE: crud_cliente
 
 ---
-{{- if ((.Values.deployment).enabled) }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.deployment.name }}
-  namespace: {{ .Values.deployment.namespace }}
+  name: {{ (.Values.deployment).name }}
+  namespace: {{ (.Values.deployment).namespace }}
 spec:
   replicas: 3
   template:
     metadata:
-      name: {{ .Values.deployment.appName }}
+      name: {{ (.Values.deployment).appName }}
       labels:
-        app: {{ .Values.deployment.appName }}
+        app: {{ (.Values.deployment).appName }}
     spec:
       containers:
-        - name: {{ .Values.deployment.containerName }}
-          image: {{ .Values.deployment.imageRepository }}:{{ .Values.deployment.imageTag }}
+        - name: {{ (.Values.deployment).containerName }}
+          image: {{ (.Values.deployment).imageRepository }}:{{ (.Values.deployment).imageTag }}
           ports:
-            - containerPort: {{ .Values.deployment.port }}
+            - containerPort: {{ (.Values.deployment).port }}
           envFrom:
             - configMapRef:
-                name: {{ .Values.deployment.configMapName }}
+                name: {{ (.Values.deployment).configMapName }}
   selector:
     matchLabels:
-      app: {{ .Values.deployment.appName }}
-{{- end }}
+      app: {{ (.Values.deployment).appName }}
 
 #---
 # Pod
