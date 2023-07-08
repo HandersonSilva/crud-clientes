@@ -20,14 +20,9 @@ set('repository', REPOSITORY);
 set('default_timeout', 1200);
 
 //get version for git
-task('get-version', function () {
+task('get-version', function () use (&$version) {
     $version = run('cd {{release_path}} && git describe --tag');
-    $version = str_replace('v', '', $version);
-    $version = explode('.', $version);
-    $version[2] = $version[2] + 1;
-    $version = implode('.', $version);
     run('echo ' . $version);
-    return $version;
 })->desc('Get version');
 
 task('docker-build', function () use ($version) {
@@ -44,10 +39,10 @@ task('docker-push', function () use ($version){
 //})->desc('Update variables');
 
 // Install yq
-task('install-yq', function () {
-    run('sudo wget https://github.com/mikefarah/yq/releases/download/v4.12.0/yq_darwin_arm64 -O /usr/bin/yq && chmod +x /usr/bin/yq');
-    run('yq --version');
-})->desc('Install yq');
+//task('install-yq', function () {
+//    run('sudo wget https://github.com/mikefarah/yq/releases/download/v4.12.0/yq_darwin_arm64 -O /usr/bin/yq && chmod +x /usr/bin/yq');
+//    run('yq --version');
+//})->desc('Install yq');
 
 
 task('deploy', [
@@ -58,7 +53,7 @@ task('deploy', [
     'get-version',
     'docker-build',
     'docker-push',
-    'install-yq',
+//    'install-yq',
     'deploy:shared',
     'deploy:writable',
     'deploy:symlink',
