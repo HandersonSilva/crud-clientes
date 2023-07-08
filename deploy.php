@@ -38,18 +38,18 @@ task('docker-push', function () use ($version){
     run('docker push handersonsilva/' . IMAGE_NAME . ':' . $version);
 })->desc('Push image');
 
-//install yq
-task('install-yq', function () {
-    run('sudo wget https://github.com/mikefarah/yq/releases/download/v4.12.0/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq');
-    run('yq --version');
-})->desc('Install yq');
+//UPDATE VARIABLES KUBERNET
+//task('update-variables', function () use ($version) {
+//    run("echo -e 'deployment:\n  hostname:''\n  stage:' main'  \n  deploy_path:' ${{ secrets.DEPLOYER_PATH }}'\n  user:' ${{ secrets.TARGET_USER }} >> values.yaml");
+//})->desc('Update variables');
+
 
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
     'deploy:release',
     'deploy:update_code',
-    'install-yq',
+    'get-version',
     'docker-build',
     'docker-push',
     'deploy:shared',
