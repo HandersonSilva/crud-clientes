@@ -21,7 +21,7 @@ set('default_timeout', 1200);
 
 //get version for git
 task('get-version', function () {
-    $version = run('cd {{release_path}} && git describe --tags --abbrev=0');
+    $version = run('cd {{release_path}} && git describe --tag');
     $version = str_replace('v', '', $version);
     $version = explode('.', $version);
     $version[2] = $version[2] + 1;
