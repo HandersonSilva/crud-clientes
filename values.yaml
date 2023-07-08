@@ -1,0 +1,37 @@
+# Deployment object
+deployment:
+  enabled: true
+  name: crud-clientes
+  namespace: apps
+  replicas: 3
+  appName: crud-clientes
+#  role: api
+  containerName: crud-clientes-container
+  imageRepository: handersonsilva/crud-clientes
+  imageTag: 1.0.7
+  port: 9000
+## Horizontal Pod Autoscaler
+#hpa:
+#  enabled: true
+#  name: orders-hpa
+#  namespace: ecommerce
+## Service object
+#service:
+#  enabled: false
+## Service Account object
+#serviceAccount:
+#  enabled: true
+#  name: orders-service-account
+#  namespace: ecommerce
+## Namespace object
+#namespace:
+#  enabled: false
+## Ingress
+#ingress:
+#  enabled: true
+#  name: orders
+#  namespace: ecommerce
+#  host: lukemwila.com
+#  path: "/"
+#  serviceName: orders
+#  servicePort: 80

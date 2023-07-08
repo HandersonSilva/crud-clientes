@@ -10,7 +10,7 @@ const APP = 'CRUD-CLIENTES';
 const REPOSITORY = 'git@github.com:HandersonSilva/crud-clientes.git';
 const AMBIENTE = 'production';
 const IMAGE_NAME = 'crud-clientes';
-const VERSION = '1.0.0';
+const VERSION = '1.0.7';
 
 inventory('deployment/hosts.yml');
 
