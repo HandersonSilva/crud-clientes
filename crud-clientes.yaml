@@ -46,6 +46,9 @@ metadata:
   name: crud-clientes-configmap
   namespace: apps
 data:
+  APP_NAME: crud-clientes
+  APP_ENV: homolog
+  APP_KEY: base64:0JLDfs7LwMILehN+urNGdtdmuM5KuD7VzRhimKnOll8=
   DB_HOST: 10.42.0.89 #mysql
   DB_USERNAME: root
   DB_PASSWORD: root
