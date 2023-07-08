@@ -1,0 +1,19 @@
+version: "3.6"
+services:
+  # Application service layer
+  crud-clientes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crud-clientes
+    working_dir: /var/www/html
+    volumes:
+      - "./src:/var/www/html"
+    ports:
+      - "9001:9000"
+    networks:
+     - octane_network
+
+networks:
+  octane_network:
+    external: true

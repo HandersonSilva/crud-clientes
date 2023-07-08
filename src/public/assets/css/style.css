@@ -1,0 +1,38 @@
+.conteudo {
+    min-height: 500px;
+    background: rgb(255, 255, 255);
+    margin-top: 30px;
+    margin-bottom: 60px;
+    box-shadow: inset 0 0 0 #bdbcb8, 0 0 10px #d0c6c6;
+    padding: 16px;
+}
+
+.conteudo-titulo {
+    min-height: 140px;
+    background: rgb(255, 255, 255);
+    margin-top: 10px;
+    box-shadow: inset 0 0 0 #bdbcb8, 0 0 10px #d0c6c6;
+    padding: 16px;
+}
+
+.conteudo-titulo h3 {
+    color: #787b8d;
+}
+
+.div-botoes {
+    margin: 10px;
+}
+
+.modal-cliente {
+    min-width: 750px;
+}
+
+.btn-info,
+.btn-danger {
+    margin: 1px;
+}
+
+.scroll-table {
+    max-height: 570px;
+    overflow-y: auto;
+}
