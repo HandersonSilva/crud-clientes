@@ -10,7 +10,6 @@ const APP = 'CRUD-CLIENTES';
 const REPOSITORY = 'git@github.com:HandersonSilva/crud-clientes.git';
 const AMBIENTE = 'production';
 const IMAGE_NAME = 'crud-clientes';
-$version = '1.0.7';
 
 inventory('deployment/hosts.yml');
 
@@ -20,16 +19,22 @@ set('repository', REPOSITORY);
 set('default_timeout', 1200);
 
 //get version for git
-task('get-version', function () use (&$version) {
+task('get-version', function () {
     $version = run('cd {{release_path}} && git describe --tag');
+//    $version = explode('-', $version);
+//    $version[2] = $version[2] + 1;
+//    $version = implode('.', $version);
     run('echo ' . $version);
+    return $version;
 })->desc('Get version');
 
-task('docker-build', function () use ($version) {
+task('docker-build', function () {
+    $version = run('cd {{release_path}} && git describe --tag');
     run('cd {{release_path}} && docker build -t handersonsilva/' . IMAGE_NAME . ':' . $version . ' -f ' . AMBIENTE . '.dockerfile .');
 })->desc('Build image');
 
-task('docker-push', function () use ($version){
+task('docker-push', function () {
+    $version = run('cd {{release_path}} && git describe --tag');
     run('docker push handersonsilva/' . IMAGE_NAME . ':' . $version);
 })->desc('Push image');
 

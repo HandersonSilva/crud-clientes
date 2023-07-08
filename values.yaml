@@ -8,7 +8,7 @@ deployment:
 #  role: api
   containerName: crud-clientes-container
   imageRepository: handersonsilva/crud-clientes
-  imageTag: 1.0.7
+  imageTag: 1.0.8
   port: 9000
 ## Horizontal Pod Autoscaler
 #hpa:
