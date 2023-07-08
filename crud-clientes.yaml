@@ -56,22 +56,46 @@ data:
 
 ---
 # Pod
-apiVersion: v1
-kind: Pod
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: crud-clientes
+#  namespace: apps
+#  labels:
+#    app: crud-clientes
+#spec:
+#  containers:
+#    - name: crud-clientes-container
+#      image: handersonsilva/crud-clientes:1.0.9
+#      ports:
+#        - containerPort: 9000
+#      envFrom:
+#        - configMapRef:
+#            name: crud-clientes-configmap
+
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: crud-clientes
-  namespace: apps
-  labels:
-    app: crud-clientes
+  name: crud-clientes-deployment
 spec:
-  containers:
-    - name: crud-clientes-container
-      image: handersonsilva/crud-clientes:1.0.9
-      ports:
-        - containerPort: 9000
-      envFrom:
-        - configMapRef:
-            name: crud-clientes-configmap
+  replicas: 3
+  template:
+    metadata:
+      name: crud-clientes
+      labels:
+        app: crud-clientes
+    spec:
+      containers:
+        - name: crud-clientes-container
+          image: handersonsilva/crud-clientes:1.0.9
+          ports:
+            - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: crud-clientes-configmap
+  selector:
+    matchLabels:
+      app: crud-clientes
 
 #{{- if ((.Values.deployment).enabled) }}
 #apiVersion: apps/v1
