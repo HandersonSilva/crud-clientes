@@ -43,6 +43,12 @@ task('docker-push', function () use ($version){
 //    run("echo -e 'deployment:\n  hostname:''\n  stage:' main'  \n  deploy_path:' ${{ secrets.DEPLOYER_PATH }}'\n  user:' ${{ secrets.TARGET_USER }} >> values.yaml");
 //})->desc('Update variables');
 
+// Install yq
+task('install-yq', function () {
+    run('sudo wget https://github.com/mikefarah/yq/releases/download/v4.12.0/yq_darwin_arm64 -O /usr/bin/yq && chmod +x /usr/bin/yq');
+    run('yq --version');
+})->desc('Install yq');
+
 
 task('deploy', [
     'deploy:info',
@@ -52,6 +58,7 @@ task('deploy', [
     'get-version',
     'docker-build',
     'docker-push',
+    'install-yq',
     'deploy:shared',
     'deploy:writable',
     'deploy:symlink',
