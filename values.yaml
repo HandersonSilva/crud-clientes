@@ -13,8 +13,8 @@ deployment:
 ## Horizontal Pod Autoscaler
 hpa:
   enabled: true
-  name: orders-hpa
-  namespace: ecommerce
+  name: crud-clientes-hpa
+  namespace: apps
 ## Service object
 #service:
 #  enabled: false
