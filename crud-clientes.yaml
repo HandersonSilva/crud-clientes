@@ -1,0 +1,71 @@
+---
+#Service (svc)
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-crud-clientes
+  namespace: apps
+spec:
+  type: ClusterIP #NodePort, ClusterIP 
+  ports:
+    - port: 9000
+      # nodePort: 30001
+  selector:
+    app: crud-clientes
+
+---
+# Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-crud-clientes
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-redirect: "false"
+    # traefik.ingress.kubernetes.io/router.tls: "true"
+    # traefik.ingress.kubernetes.io/router.tls.certresolver: default
+spec:
+  rules:
+    - host: app-homolog.ddns.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: svc-crud-clientes
+                port:
+                  number: 9000
+            path: /
+            pathType: Prefix
+
+---
+# ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crud-clientes-configmap
+  namespace: apps
+data:
+  DB_HOST: 10.42.0.89 #mysql
+  DB_USERNAME: root
+  DB_PASSWORD: root
+  DB_DATABASE: crud_cliente
+
+---
+# Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crud-clientes
+  namespace: apps
+  labels:
+    app: crud-clientes
+spec:
+  containers:
+    - name: crud-clientes-container
+      image: handersonsilva/crud-clientes-arm64:1.0.4
+      ports:
+        - containerPort: 9000
+      envFrom:
+        - configMapRef:
+            name: crud-clientes-configmap
