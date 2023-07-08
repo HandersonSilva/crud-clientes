@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-crud-clientes
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/ssl-redirect: "false"
+    # traefik.ingress.kubernetes.io/router.tls: "true"
+    # traefik.ingress.kubernetes.io/router.tls.certresolver: default
+spec:
+  rules:
+    - host: app-homolog.ddns.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: svc-crud-clientes
+                port:
+                  number: 9000
+            path: /
+            pathType: Prefix

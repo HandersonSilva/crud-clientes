@@ -11,10 +11,10 @@ deployment:
   imageTag: 1.0.8
   port: 9000
 ## Horizontal Pod Autoscaler
-#hpa:
-#  enabled: true
-#  name: orders-hpa
-#  namespace: ecommerce
+hpa:
+  enabled: true
+  name: orders-hpa
+  namespace: ecommerce
 ## Service object
 #service:
 #  enabled: false
