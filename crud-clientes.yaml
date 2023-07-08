@@ -53,48 +53,48 @@ data:
 
 ---
 # Pod
-#apiVersion: v1
-#kind: Pod
-#metadata:
-#  name: crud-clientes
-#  namespace: apps
-#  labels:
-#    app: crud-clientes
-#spec:
-#  containers:
-#    - name: crud-clientes-container
-#      image: handersonsilva/crud-clientes-arm64:1.0.4
-#      ports:
-#        - containerPort: 9000
-#      envFrom:
-#        - configMapRef:
-#            name: crud-clientes-configmap
-
-{{- if ((.Values.deployment).enabled) }}
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: {{ .Values.deployment.name }}
-  namespace: {{ .Values.deployment.namespace }}
+  name: crud-clientes
+  namespace: apps
+  labels:
+    app: crud-clientes
 spec:
-  replicas: {{ .Values.deployment.replicas }}
-  #  selector:
-  #    matchLabels:
-  #      app: {{ .Values.deployment.appName }}
-  #      role: {{ .Values.deployment.role }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Values.deployment.appName }}
-#        role: {{ .Values.deployment.role }}
-    spec:
-      containers:
-        - name: {{ .Values.deployment.containerName }}
-          image: "{{ .Values.deployment.imageRepository }}:{{ .Values.deployment.imageTag }}"
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
-          ports:
-            - containerPort: {{ .Values.deployment.port }}
-{{- end }}
+  containers:
+    - name: crud-clientes-container
+      image: handersonsilva/crud-clientes:1.0.8
+      ports:
+        - containerPort: 9000
+      envFrom:
+        - configMapRef:
+            name: crud-clientes-configmap
+
+#{{- if ((.Values.deployment).enabled) }}
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: {{ .Values.deployment.name }}
+#  namespace: {{ .Values.deployment.namespace }}
+#spec:
+#  replicas: {{ .Values.deployment.replicas }}
+#  #  selector:
+#  #    matchLabels:
+#  #      app: {{ .Values.deployment.appName }}
+#  #      role: {{ .Values.deployment.role }}
+#  template:
+#    metadata:
+#      labels:
+#        app: {{ .Values.deployment.appName }}
+##        role: {{ .Values.deployment.role }}
+#    spec:
+#      containers:
+#        - name: {{ .Values.deployment.containerName }}
+#          image: "{{ .Values.deployment.imageRepository }}:{{ .Values.deployment.imageTag }}"
+#          resources:
+#            limits:
+#              memory: "128Mi"
+#              cpu: "500m"
+#          ports:
+#            - containerPort: {{ .Values.deployment.port }}
+#{{- end }}
