@@ -84,13 +84,9 @@ spec:
   #      role: {{ .Values.deployment.role }}
   template:
     metadata:
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "{{ .Values.deployment.port }}"
-        prometheus.io/path: "/metrics"
       labels:
         app: {{ .Values.deployment.appName }}
-        role: {{ .Values.deployment.role }}
+#        role: {{ .Values.deployment.role }}
     spec:
       containers:
         - name: {{ .Values.deployment.containerName }}
