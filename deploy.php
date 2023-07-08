@@ -21,20 +21,23 @@ set('default_timeout', 1200);
 //get version for git
 task('get-version', function () {
     $version = run('cd {{release_path}} && git describe --tag');
-//    $version = explode('-', $version);
-//    $version[2] = $version[2] + 1;
-//    $version = implode('.', $version);
+    $version = explode('-', $version);
+    $version = $version[0];
     run('echo ' . $version);
     return $version;
 })->desc('Get version');
 
 task('docker-build', function () {
     $version = run('cd {{release_path}} && git describe --tag');
+    $version = explode('-', $version);
+    $version = $version[0];
     run('cd {{release_path}} && docker build -t handersonsilva/' . IMAGE_NAME . ':' . $version . ' -f ' . AMBIENTE . '.dockerfile .');
 })->desc('Build image');
 
 task('docker-push', function () {
     $version = run('cd {{release_path}} && git describe --tag');
+    $version = explode('-', $version);
+    $version = $version[0];
     run('docker push handersonsilva/' . IMAGE_NAME . ':' . $version);
 })->desc('Push image');
 
