@@ -70,7 +70,8 @@ data:
 #        - configMapRef:
 #            name: crud-clientes-configmap
 
----
+
+{{- if .Values.deployment.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -101,3 +102,4 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: {{ .Values.deployment.port }}
+{{- end }}
