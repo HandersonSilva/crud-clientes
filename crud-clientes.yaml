@@ -54,25 +54,7 @@ data:
   DB_PASSWORD: root
   DB_DATABASE: crud_cliente
 
-#---
-# Pod
-#apiVersion: v1
-#kind: Pod
-#metadata:
-#  name: crud-clientes
-#  namespace: apps
-#  labels:
-#    app: crud-clientes
-#spec:
-#  containers:
-#    - name: crud-clientes-container
-#      image: handersonsilva/crud-clientes:1.0.9
-#      ports:
-#        - containerPort: 9000
-#      envFrom:
-#        - configMapRef:
-#            name: crud-clientes-configmap
-
+---
 {{- if ((.Values.deployment).enabled) }}
 apiVersion: apps/v1
 kind: Deployment
@@ -99,3 +81,22 @@ spec:
     matchLabels:
       app: {{ .Values.deployment.appName }}
 {{- end }}
+
+#---
+# Pod
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: crud-clientes
+#  namespace: apps
+#  labels:
+#    app: crud-clientes
+#spec:
+#  containers:
+#    - name: crud-clientes-container
+#      image: handersonsilva/crud-clientes:1.0.9
+#      ports:
+#        - containerPort: 9000
+#      envFrom:
+#        - configMapRef:
+#            name: crud-clientes-configmap
