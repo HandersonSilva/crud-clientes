@@ -7,8 +7,7 @@ namespace Deployer;
 require 'recipe/common.php';
 
 const APP = 'CRUD-CLIENTES';
-const REPOSITORY = 'git@github.com:switchsoftware/salao-levie.git';
-const NUMBER_RELEASE = 2;
+const REPOSITORY = 'git@github.com:HandersonSilva/crud-clientes.git';
 const AMBIENTE = 'production';
 const IMAGE_NAME = 'crud-clientes';
 const VERSION = '1.0.0';
