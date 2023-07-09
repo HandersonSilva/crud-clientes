@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.12
+          image: handersonsilva/crud-clientes:1.0.13
           ports:
             - containerPort: 9000
           envFrom:
