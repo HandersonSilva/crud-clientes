@@ -7,6 +7,7 @@ namespace Deployer;
 require 'recipe/common.php';
 
 const APP = 'CRUD-CLIENTES';
+const NUMBER_RELEASE = 1;
 const REPOSITORY = 'git@github.com:HandersonSilva/crud-clientes.git';
 const AMBIENTE = 'production';
 const IMAGE_NAME = 'crud-clientes';
@@ -16,6 +17,7 @@ inventory('deployment/hosts.yml');
 set('application', APP);
 
 set('repository', REPOSITORY);
+set('keep_releases', NUMBER_RELEASE);
 set('default_timeout', 1200);
 
 //get version for git
