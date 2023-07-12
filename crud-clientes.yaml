@@ -91,10 +91,11 @@ spec:
       name: crud-clientes
       labels:
         app: crud-clientes
+        access: "true"
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.23
+          image: handersonsilva/crud-clientes:1.0.24
           ports:
             - containerPort: 9000
           resources:
