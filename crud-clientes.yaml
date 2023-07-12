@@ -72,8 +72,8 @@ data:
   APP_ENV: homolog
   APP_DEBUG: "true"
   APP_KEY: base64:0JLDfs7LwMILehN+urNGdtdmuM5KuD7VzRhimKnOll8=
-  DB_HOST: mysql
-  DB_PORT: "3306"
+  DB_HOST: 10.42.1.97
+  DB_PORT: 3306
   DB_USERNAME: root
   DB_PASSWORD: root
   DB_DATABASE: crud_cliente
@@ -94,7 +94,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.22
+          image: handersonsilva/crud-clientes:1.0.23
           ports:
             - containerPort: 9000
           resources:
