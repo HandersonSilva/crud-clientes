@@ -70,6 +70,7 @@ metadata:
 data:
   APP_NAME: crud-clientes
   APP_ENV: homolog
+  APP_DEBUG: true
   APP_KEY: base64:0JLDfs7LwMILehN+urNGdtdmuM5KuD7VzRhimKnOll8=
   DB_HOST: 10.42.1.72 #mysql
   DB_USERNAME: root
@@ -92,7 +93,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.18
+          image: handersonsilva/crud-clientes:1.0.19
           ports:
             - containerPort: 9000
           resources:
