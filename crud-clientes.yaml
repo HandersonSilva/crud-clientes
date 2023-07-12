@@ -58,7 +58,7 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 80
 
 ---
 # ConfigMap
@@ -92,14 +92,14 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.16
+          image: handersonsilva/crud-clientes:1.0.17
           ports:
             - containerPort: 9000
           resources:
             limits:
-              cpu: 10m
+              cpu: 500m
             requests:
-              cpu: 10m
+              cpu: 200m
           envFrom:
             - configMapRef:
                 name: crud-clientes-configmap
