@@ -68,15 +68,15 @@ metadata:
   name: crud-clientes-configmap
   namespace: apps
 data:
-  APP_NAME: crud-clientes
-  APP_ENV: homolog
+  APP_NAME: "crud-clientes"
+  APP_ENV: "homolog"
   APP_DEBUG: "true"
-  APP_KEY: base64:0JLDfs7LwMILehN+urNGdtdmuM5KuD7VzRhimKnOll8=
-  DB_HOST: 10.42.1.107
-  DB_PORT: 3306
-  DB_USERNAME: root
-  DB_PASSWORD: root
-  DB_DATABASE: crud_cliente
+  APP_KEY: "base64:0JLDfs7LwMILehN+urNGdtdmuM5KuD7VzRhimKnOll8="
+  DB_HOST: "10.42.1.107"
+  DB_PORT: "3306"
+  DB_USERNAME: "root"
+  DB_PASSWORD: "root"
+  DB_DATABASE: "crud_cliente"
 
 ---
 apiVersion: apps/v1
@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.30
+          image: handersonsilva/crud-clientes:1.0.31
           ports:
             - containerPort: 9000
           resources:
