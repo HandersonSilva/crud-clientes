@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.25
+          image: handersonsilva/crud-clientes:1.0.26
           ports:
             - containerPort: 9000
           resources:
