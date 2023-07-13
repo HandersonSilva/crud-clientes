@@ -95,14 +95,14 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.29
+          image: handersonsilva/crud-clientes:1.0.30
           ports:
             - containerPort: 9000
           resources:
             limits:
-              cpu: 500m
+              cpu: 250m
             requests:
-              cpu: 200m
+              cpu: 100m
           envFrom:
             - configMapRef:
                 name: crud-clientes-configmap
