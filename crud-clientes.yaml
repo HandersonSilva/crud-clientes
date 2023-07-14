@@ -40,6 +40,7 @@ spec:
 
 ---
 #Hpa
+# Necessary to install metrics-server https://github.com/kubernetes-sigs/metrics-server
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
@@ -52,13 +53,14 @@ spec:
     name: crud-clientes-deployment
   minReplicas: 2
   maxReplicas: 10
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 80
+  targetCPUUtilizationPercentage: 80
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 80
 
 ---
 # ConfigMap
@@ -95,14 +97,14 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.35
+          image: handersonsilva/crud-clientes:1.0.36
           ports:
             - containerPort: 9000
           resources:
             limits:
-              cpu: 250m
-            requests:
               cpu: 100m
+            requests:
+              cpu: 50m
           envFrom:
             - configMapRef:
                 name: crud-clientes-configmap
