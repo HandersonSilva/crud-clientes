@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.33
+          image: handersonsilva/crud-clientes:1.0.34
           ports:
             - containerPort: 9000
           resources:
@@ -106,29 +106,20 @@ spec:
           envFrom:
             - configMapRef:
                 name: crud-clientes-configmap
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9000
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 9000
+              periodSeconds: 10
+              failureThreshold: 5
+              initialDelaySeconds: 3
   selector:
     matchLabels:
       app: crud-clientes
-
----
-# Liveness
-apiVersion: v1
-kind: Pod
-metadata:
-  name: crud-clientes-liveness
-  namespace: apps
-spec:
-  containers:
-    - name: liveness-crud-clientes-container
-      image: k8s.gcr.io/liveness
-      args:
-      - /server
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9000
-          httpHeaders:
-            - name: X-Custom-Header
-              value: Awesome
-        initialDelaySeconds: 5
-        periodSeconds: 5
