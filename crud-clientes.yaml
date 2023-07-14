@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.34
+          image: handersonsilva/crud-clientes:1.0.35
           ports:
             - containerPort: 9000
           resources:
@@ -113,13 +113,13 @@ spec:
             periodSeconds: 10
             failureThreshold: 3
             initialDelaySeconds: 20
-            readinessProbe:
-              httpGet:
-                path: /
-                port: 9000
-              periodSeconds: 10
-              failureThreshold: 5
-              initialDelaySeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9000
+            periodSeconds: 10
+            failureThreshold: 5
+            initialDelaySeconds: 3
   selector:
     matchLabels:
       app: crud-clientes
