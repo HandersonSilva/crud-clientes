@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: svc-crud-clientes
-  namespace: apps
+  namespace: app-teste
 spec:
   type: ClusterIP #NodePort, ClusterIP 
   ports:
@@ -19,7 +19,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-crud-clientes
-  namespace: apps
+  namespace: app-teste
   annotations:
     kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-redirect: "false"
@@ -45,7 +45,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: crud-clientes-hpa
-  namespace: apps
+  namespace: app-teste
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -68,7 +68,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: crud-clientes-configmap
-  namespace: apps
+  namespace: app-teste
 data:
   APP_NAME: "crud-clientes"
   APP_ENV: "homolog"
@@ -85,7 +85,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: crud-clientes-deployment
-  namespace: apps
+  namespace: app-teste
 spec:
   replicas: 2
   template:
@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:1.0.37
+          image: handersonsilva/crud-clientes:1.1.0
           ports:
             - containerPort: 9000
           resources:
@@ -113,7 +113,7 @@ spec:
               path: /
               port: 9000
             periodSeconds: 30
-            failureThreshold: 10
+            failureThreshold: 4
             initialDelaySeconds: 30
 #          readinessProbe:
 #            httpGet:
