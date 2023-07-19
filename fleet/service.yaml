@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-crud-clientes
+  namespace: app-teste
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9000
+  selector:
+    app: crud-clientes

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-clientes-deployment
+  namespace: app-teste
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: crud-clientes
+      labels:
+        app: crud-clientes
+        access: "true"
+    spec:
+      containers:
+        - name: crud-clientes-container
+          image: handersonsilva/crud-clientes:1.1.0
+          ports:
+            - containerPort: 9000
+          resources:
+            limits:
+              cpu: 200m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                name: crud-clientes-configmap
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9000
+            periodSeconds: 30
+            failureThreshold: 4
+            initialDelaySeconds: 30
+  #          readinessProbe:
+  #            httpGet:
+  #              path: /
+  #              port: 9000
+  #            periodSeconds: 10
+  #            failureThreshold: 5
+  #            initialDelaySeconds: 3
+  selector:
+    matchLabels:
+      app: crud-clientes

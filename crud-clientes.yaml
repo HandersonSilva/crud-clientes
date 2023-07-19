@@ -103,8 +103,10 @@ spec:
           resources:
             limits:
               cpu: 200m
+              memory: 1Gi
             requests:
               cpu: 100m
+              memory: 512Mi
           envFrom:
             - configMapRef:
                 name: crud-clientes-configmap
