@@ -50,7 +50,6 @@ jobs:
           author_email: handersonsylva@gmail.com
       - name: Update image tag in git repository
         run: |
-          git checkout release
           export CONTAINER_IMAGE_TAG="$(git describe --tag --always)"
           export CONTAINER_IMAGE_NAME="handersonsilva/crud-clientes:$CONTAINER_IMAGE_TAG" 
           yq e -i '.spec.template.spec.containers[0].image = strenv(CONTAINER_IMAGE_NAME)' ./fleet/deployment.yaml
