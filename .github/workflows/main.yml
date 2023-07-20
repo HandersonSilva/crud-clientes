@@ -49,7 +49,7 @@ jobs:
           author_name: Handerson Silva
           author_email: handersonsylva@gmail.com
           token: ${{ secrets.GH_TOKEN }}
-      - name: Update image tag in git repository
+      - name: Update image tag from git repository
         run: |
           export CONTAINER_IMAGE_TAG="$(git describe --tag --always)"
           export CONTAINER_IMAGE_NAME="handersonsilva/crud-clientes:$CONTAINER_IMAGE_TAG" 
