@@ -5,16 +5,29 @@ metadata:
   name: crud-clientes-networkpolicy
   namespace: app-teste
 spec:
-  podSelector:
-    matchLabels:
-      app: crud-clientes
+  podSelector: {}
+  ingress:
+    - {}
   policyTypes:
     - Ingress
-#    - Egress
-  ingress:
-    - from:
-      - podSelector:
-          matchLabels:
-            app: crud-clientes
+---
+
+#apiVersion: networking.k8s.io/v1
+#kind: NetworkPolicy
+#metadata:
+#  name: crud-clientes-networkpolicy
+#  namespace: app-teste
+#spec:
+#  podSelector:
+#    matchLabels:
+#      app: crud-clientes
+#  policyTypes:
+#    - Ingress
+##    - Egress
+#  ingress:
+#    - from:
+#      - podSelector:
+#          matchLabels:
+#            app: crud-clientes
 #  egress:
 #   - {}
