@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: crud-clientes-configmap
   namespace: app-teste
+  labels:
+    app: crud-clientes
 data:
   APP_NAME: "crud-clientes"
   APP_ENV: "homolog"

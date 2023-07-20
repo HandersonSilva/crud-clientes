@@ -3,6 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: crud-clientes-hpa
   namespace: app-teste
+  labels:
+    app: crud-clientes
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

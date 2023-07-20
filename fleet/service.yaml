@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: svc-crud-clientes
   namespace: app-teste
+  labels:
+    app: crud-clientes
 spec:
   type: ClusterIP
   ports:
