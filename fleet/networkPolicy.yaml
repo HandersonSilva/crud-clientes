@@ -10,11 +10,11 @@ spec:
       app: crud-clientes
   policyTypes:
     - Ingress
-    - Egress
+#    - Egress
   ingress:
     - from:
       - podSelector:
           matchLabels:
             app: crud-clientes
-  egress:
-   - {}
+#  egress:
+#   - {}
