@@ -1,0 +1,28 @@
+# create rbac permissions
+#apiVersion: rbac.authorization.k8s.io/v1
+#kind: Role
+#metadata:
+#  name: crud-clientes-role
+#  namespace: app-teste
+#rules:
+#  - apiGroups: [""]
+#    resources: ["namespaces", "pods", "services"]
+#    verbs: ["get", "list", "watch"]
+#  - apiGroups: ["apps"]
+#    resources: ["deployments"]
+#    verbs: ["get", "list", "watch"]
+
+#---
+# create role binding
+#apiVersion: rbac.authorization.k8s.io/v1
+#kind: RoleBinding
+#metadata:
+#  name: crud-clientes-rolebinding
+#  namespace: app-teste
+#subjects:
+#  - kind: ServiceAccount # this can be User, Group, or ServiceAccount
+#    name: crud-clientes-serviceaccount
+#roleRef:
+#    kind: Role
+#    name: crud-clientes-role
+#    apiGroup: rbac.authorization.k8s.io

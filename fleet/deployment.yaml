@@ -10,7 +10,6 @@ spec:
       name: crud-clientes
       labels:
         app: crud-clientes
-        access: "true"
     spec:
       serviceAccountName: crud-clientes-serviceaccount
       containers:
