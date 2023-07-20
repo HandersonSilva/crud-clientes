@@ -12,6 +12,7 @@ spec:
         app: crud-clientes
         access: "true"
     spec:
+      serviceAccountName: crud-clientes-serviceaccount
       containers:
         - name: crud-clientes-container
           image: handersonsilva/crud-clientes:1.1.0
