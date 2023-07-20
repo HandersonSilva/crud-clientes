@@ -15,7 +15,7 @@ spec:
       serviceAccountName: crud-clientes-serviceaccount
       containers:
         - name: crud-clientes-container
-          image: handersonsilva/crud-clientes:56a5bd9
+          image: handersonsilva/crud-clientes:b16998b
           ports:
             - containerPort: 9000
           resources:
