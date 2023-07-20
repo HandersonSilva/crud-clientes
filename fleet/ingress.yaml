@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-crud-clientes
   namespace: app-teste
+  labels:
+    app: crud-clientes
   annotations:
     kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-redirect: "false"

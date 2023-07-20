@@ -8,11 +8,13 @@ spec:
   podSelector:
     matchLabels:
       app: crud-clientes
+  policyTypes:
+    - Ingress
+    - Egress
   ingress:
     - from:
-        - podSelector:
-            matchLabels:
-              app: crud-clientes
-        - namespaceSelector:
-            matchLabels:
-              name: app-teste
+      - podSelector:
+          matchLabels:
+            app: crud-clientes
+  egress:
+   - {}
