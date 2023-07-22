@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: test-job-create-clients
+  namespace: default
+spec:
+  schedule: '*/1 * * * *'
+#  suspend: false
+#  concurrencyPolicy: Allow
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      namespace: default
+    spec:
+      template:
+        spec:
+          containers:
+            - name: test-job-create-clients
+              image: curlimages/curl
+              args:
+              - /bin/sh
+              - -ec
+              - curl -X POST -F "nome=Mr Test" -F "sobre_nome=Test Cron Job" http://app-homolog.ddns.net/cliente
+              imagePullPolicy: Always
+              resources: {}
+          dnsPolicy: ClusterFirst
+          restartPolicy: OnFailure
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: default
+          serviceAccountName: default
+          terminationGracePeriodSeconds: 10

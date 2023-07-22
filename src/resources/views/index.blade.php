@@ -32,13 +32,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 scroll-table">
+        <div class="col-md-12">
             <div class="table-responsive">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <table class="table table-hover">
                     @if ( sizeof($clientes) > 0)
                     <caption>
-                        Lista de clientes
+                        Total de clientes: {{$clientes->total()}}
                     </caption>
                     @endif
                     <thead>
@@ -82,10 +82,10 @@
             </div>
 
             @if ( sizeof($clientes) <= 0)
-            <h3 style="text-align: center;">Nenhum cliente cadastrado</h3>
+                <h3 style="text-align: center;">Nenhum cliente cadastrado</h3>
             @endif
         </div>
-        {{sizeof($clientes) > 0 ? $clientes->links() : ''}}
+        {{ $clientes->links() }}
     </div>
 </div>
 @endsection

@@ -4,7 +4,7 @@ services:
   crud-clientes:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: production.dockerfile
     container_name: crud-clientes
     working_dir: /var/www/html
     volumes:
