@@ -8,7 +8,7 @@
             </a>
         </div>
         <div class="col-md-10">
-            <form action="/pesquisar" method="POST">
+            <form action="/" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="form-row">
                     <div class="col-10">

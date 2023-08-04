@@ -46,9 +46,9 @@ class ClienteController extends Controller
         }
 
         if (!empty($data['id'])){
-            $cliente = Cliente::find($data['id']);
+            Cliente::find($data['id']);
         }else{
-            $cliente = Cliente::create($data);
+            Cliente::create($data);
         }
 
         return redirect('cliente');
@@ -117,7 +117,9 @@ class ClienteController extends Controller
                     ->orwhere('uf', 'like','%'.$data['texto_busca'].'%')
                     ->orwhere('cep', 'like','%'.$data['texto_busca'].'%')
                     ->orwhere('id', '=',$data['texto_busca'])
-                    ->paginate();
+                    ->orderBy('id','desc')
+                    ->paginate(8);
+
 
         return view('index')->with(compact('clientes'));
     }
@@ -127,6 +129,5 @@ class ClienteController extends Controller
         $clientes = Cliente::all();
 
         return $clientes;
-
     }
 }

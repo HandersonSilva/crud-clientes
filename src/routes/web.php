@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'ClienteController@index');
 
 Route::resource('/cliente', 'ClienteController');
-Route::post('/pesquisar', 'ClienteController@pesquisarCliente');
+Route::post('/', 'ClienteController@pesquisarCliente');
