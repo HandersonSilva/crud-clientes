@@ -4,7 +4,7 @@ metadata:
   name: crud-clientes-deployment
   namespace: app-teste
 spec:
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       name: crud-clientes
